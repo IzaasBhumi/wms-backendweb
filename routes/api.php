@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LokasiBarangController;
@@ -22,8 +23,16 @@ use App\Http\Controllers\PembelianDetailController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+    // Users Routes
+    Route::get('users', [UserController::class, 'index']);
+    Route::get('users/create', [UserController::class, 'create']);
+    Route::post('users', [UserController::class, 'store']);
+    Route::get('users/{id}', [UserController::class, 'show']);
+    Route::get('users/{id}/edit', [UserController::class, 'edit']);
+    Route::put('users/{id}', [UserController::class, 'update']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
+
     // Produk Routes
     Route::get('produk', [ProdukController::class, 'index']);
     Route::get('produk/create', [ProdukController::class, 'create']);
