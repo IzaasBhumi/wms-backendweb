@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id');
             $table->unsignedBigInteger('id_kategori')->index();
             $table->string('kode_produk', 255);
+            $table->string('nama', 255);
             $table->integer('harga_beli');
             $table->integer('harga_jual');
             $table->date('expired')->nullable();
